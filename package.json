@@ -1,0 +1,24 @@
+{
+  "name": "projet-de-selection-back",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/C-Cyril/Projet-de-selection-Back#readme",
+  "bugs": {
+    "url": "https://github.com/C-Cyril/Projet-de-selection-Back/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/C-Cyril/Projet-de-selection-Back.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "sqlite3": "^5.1.7"
+  }
+}
