@@ -1,7 +1,9 @@
 const Sequelize = require("sequelize");
-const sequelize = require("../BDD/ListeBlagues.db");
+//const sequelize = require("../BDD/ListeBlagues.db");
+const sequelize = require("../BDD/BDD");
 
-const Blague = sequelize.define("blague", {
+//création d'un modele "blague" pointé par "blague"
+const blague = sequelize.define('blagues', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -18,4 +20,9 @@ const Blague = sequelize.define("blague", {
     },
 });
 
-module.exports = Blague;
+blague.sync();
+
+//sequelize.sync();
+//console.log(blague === sequelize.models.blagues);
+
+module.exports = blague;
