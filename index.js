@@ -1,58 +1,51 @@
 const express = require("express");
 //import express from "express";
-const sequelize = require("./BDD/BDD");
+//const sequelize = require("./BDD/BDD");
 //import sequelize from "./BDD/BDD.js";
-
+const sequelize = require("./BDD/BDD");
 const Blague = require("./Modele/blague");
 //import Blague from "./Modele/blague.js";
 
 /*
-sequelize.sync().then(result => {
-    console.log(result);
-    console.log("PATATE");
-}).catch(erreur => {
-    console.log(erreur);
-});
-*/
-
-/*
-//Cela a inséré une ligne (id 0) dans la BDD
-Blague.create({id: 0, question: "Quelle est la femelle du hamster ?", reponse: "L’Amsterdam"});
+//Cela a inséré une ligne (id 1) dans la BDD
+Blague.create({id: 1, question: "Que dit un oignon quand il se cogne ?", reponse: "Aïe"});
 Blague.sync();
 */
 
-//SELECT * FORM ...
-const users = Blague.findAll();
-
 
 //console.log(users.every(user => user instanceof User)); // true
-console.log('All users:', JSON.stringify(users, null, 2));
-
+//console.log('All users:', JSON.stringify(users, null, 2));
 
 const app = express();
 
-const PORT = 3000;
+//Insère une blague dans la BDD, id automatique
+app.get('/ajoute/:question/:reponse', (req, res) => {
+  Blague.ajouteBlague(req.params.question, req.params.reponse);
+  res.send('Blague ajoutée');
+});
 
-app.get('/', (req, res) => {
-  res.send('hello world')
-})
-
-//Envoi toutes les blagues
+//Envoi toutes les blagues NE FONCTIONNE PAS
 app.get('/blagues', (req, res) => {
-	res.send('toutes les blagues')
-})
+	//res.send('toutes les blagues')
+  //SELECT * FORM ...
+  //res.json(Blague.findAll());
+  const resultat = Blague.toutesLesBlagues();
+  res.send(resultat);
+  
+});
 
-//Envoi une blague aléatoire
+//Envoi une blague aléatoire PAS FAIT
 app.get('/blagues/random', (req, res) => {
 	res.send('blague aléatoire');
-})
+});
 
-//Envoi une blague correspondant à son id
+//Envoi une blague correspondant à son id PAS FAIT
 app.get('/blagues/:id', (req, res) => {
-	res.send('blague par id');
-})
+	res.send(Blague.blagueParId(req.params.id));
+});
 
-
+//Lance le serveur API
+const PORT = 3000;
 app.listen(PORT, () => {
 	console.log('My app is running on URL https://localhost:'+PORT);
 });
