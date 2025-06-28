@@ -24,24 +24,21 @@ app.get('/ajoute/:question/:reponse', (req, res) => {
   res.send('Blague ajoutée');
 });
 
-//Envoi toutes les blagues NE FONCTIONNE PAS
-app.get('/blagues', (req, res) => {
-	//res.send('toutes les blagues')
-  //SELECT * FORM ...
-  //res.json(Blague.findAll());
-  const resultat = Blague.toutesLesBlagues();
-  res.send(resultat);
-  
+//Envoi toutes les blagues
+app.get('/blagues', async (req, res) => {
+  //var resultat = new Array;
+  //resultat = await Blague.toutesLesBlagues();
+  res.send(await Blague.toutesLesBlagues());
 });
 
 //Envoi une blague aléatoire PAS FAIT
-app.get('/blagues/random', (req, res) => {
-	res.send('blague aléatoire');
+app.get('/blagues/random', async (req, res) => {
+	res.send(await Blague.blagueAleatoire());
 });
 
 //Envoi une blague correspondant à son id PAS FAIT
-app.get('/blagues/:id', (req, res) => {
-	res.send(Blague.blagueParId(req.params.id));
+app.get('/blagues/:id', async (req, res) => {
+	res.send(await Blague.blagueParId(req.params.id));
 });
 
 //Lance le serveur API
