@@ -5,8 +5,14 @@ const Blague = require("./Modele/blague");
 const app = express();
 
 //Insère une blague dans la BDD, id automatique
+
 app.get('/ajoute/:question/:reponse', (req, res) => {
   Blague.ajouteBlague(req.params.question, req.params.reponse);
+  res.send('Blague ajoutée');
+});
+
+app.post('ajouter/:blague', (req, res) => {
+  Blague.ajouteBlague(req.params.blague.question, req.params.blague.reponse);
   res.send('Blague ajoutée');
 });
 
