@@ -14,7 +14,7 @@ app.get('/ajoute/:question/:reponse', (req, res) => {
   res.send('Blague ajoutée');
 });
 
-app.post('ajouter', (req, res) => {
+app.post('/ajouter', (req, res) => {
   //Blague.ajouteBlague(req.body.question, req.body.reponse);
   res.send(req.body);
 });
