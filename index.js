@@ -8,13 +8,13 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 //Autorise mon front-end à utiliser cette API
+/*
 const cors = require("cors");
 const corsOptions = {
   origin:"https://c-cyril.github.io/Projet-de-selection-Front/",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",};
 app.use(cors(corsOptions));
-
-Access-
+*/
 
 //Insère une blague dans la BDD, id automatique
 app.post('/ajouter', (req, res) => {
