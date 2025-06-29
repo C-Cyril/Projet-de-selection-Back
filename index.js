@@ -14,6 +14,8 @@ const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",};
 app.use(cors(corsOptions));
 
+Access-
+
 //Insère une blague dans la BDD, id automatique
 app.post('/ajouter', (req, res) => {
   Blague.ajouteBlague(req.body.question, req.body.reponse);
@@ -38,7 +40,7 @@ app.get('/blagues/:id', async (req, res) => {
 });
 
 //Lance le serveur API
-const PORT = 3000;
+const PORT = 10000;
 app.listen(PORT, () => {
 	console.log('My app is running on port '+PORT);
 });
