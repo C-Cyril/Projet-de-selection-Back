@@ -23,15 +23,6 @@ blague.sync();
 
 //Envoie la liste de toutes les blagues
 exports.toutesLesBlagues =  async () => {
-    //return JSON.stringify(blague.findAll());
-    //return blague.findAll();
-    /*
-    const users = blague.findAll();
-    console.log(users.every(user => user instanceof User)); // true
-    console.log('All users:', JSON.stringify(users, null, 2));
-    */
-   
-   //const resultat = async () => {
     try {
         const blagues = await blague.findAll();  
         return blagues;
@@ -68,6 +59,7 @@ exports.blagueParId = async (pId) => {
     }
 };
 
+//Envoie une blague aléatoire
 exports.blagueAleatoire = async () => {
     try {
         const { count, rows } = await blague.findAndCountAll();
@@ -86,11 +78,3 @@ exports.blagueAleatoire = async () => {
         throw error;
     }
 };
-
-
-/*
-console.log(JSON.stringify(blague.findAll({attributes: ['id']})));
-console.log('test');
-*/
-
-//module.exports = blague;

@@ -8,12 +8,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 //Insère une blague dans la BDD, id automatique
-
-app.get('/ajoute/:question/:reponse', (req, res) => {
-  Blague.ajouteBlague(req.params.question, req.params.reponse);
-  res.send('Blague ajoutée');
-});
-
 app.post('/ajouter', (req, res) => {
   Blague.ajouteBlague(req.body.question, req.body.reponse);
   res.send(req.body);
@@ -31,7 +25,7 @@ app.get('/blagues/random', async (req, res) => {
 	res.send(await Blague.blagueAleatoire());
 });
 
-//Envoi une blague correspondant à son
+//Envoi une blague correspondant à son id
 app.get('/blagues/:id', async (req, res) => {
 	res.send(await Blague.blagueParId(req.params.id));
 });
