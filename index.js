@@ -28,9 +28,7 @@ app.get('/blagues/:id', async (req, res) => {
 });
 
 //Lance le serveur API
-/*
 const PORT = 3000;
 app.listen(PORT, () => {
-	console.log('My app is running on URL https://localhost:'+PORT);
+	console.log('My app is running on port '+PORT);
 });
-*/
