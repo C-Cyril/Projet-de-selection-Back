@@ -15,7 +15,7 @@ app.get('/ajoute/:question/:reponse', (req, res) => {
 });
 
 app.post('/ajouter', (req, res) => {
-  //Blague.ajouteBlague(req.body.question, req.body.reponse);
+  Blague.ajouteBlague(req.body.question, req.body.reponse);
   res.send(req.body);
 });
 
