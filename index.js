@@ -11,9 +11,11 @@ app.use(express.urlencoded({extended: true}));
 
 const cors = require("cors");
 const corsOptions = {
+  //Pour autoriser seulement mon front-end : NE FONCTIONNE PAS
   //origin:"https://c-cyril.github.io/Projet-de-selection-Front/",
+  //Pour autoriser toutes les origines à accéder à cette API
   origin: "*",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",};
+  methods: "GET,HEAD,POST",};
 app.use(cors(corsOptions));
 
 
