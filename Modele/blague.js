@@ -18,7 +18,7 @@ const blague = sequelize.define('blagues', {
         allownull: false,
     },
 });
-//Créé dans la BDD la table "blagues" indiquée ci-dessus si elle n'éxiste pas déjà
+//Créé dans la BDD la table "blagues" (et la BDD) indiquée ci-dessus si elle n'éxiste pas déjà
 blague.sync();
 
 //Envoie la liste de toutes les blagues
