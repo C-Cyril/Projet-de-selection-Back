@@ -27,7 +27,7 @@ const options = {
       },
     ],
   },
-  apis: ["./modele/*.js"],
+  apis: ["./modele/*.js", "./*.js"],
 };
 const specs = swaggerJsdoc(options);
 app.use(
@@ -46,12 +46,56 @@ const corsOptions = {
   methods: "GET,HEAD,POST",};
 app.use(cors(corsOptions));
 
+/**
+ * @swagger
+ * tags:
+ *   name: Blagues
+ *   description: API qui gère les blagues
+ * /ajouter:
+ *   post:
+ *     summary: Créé une nouvelle blague dans la BDD.
+ *     tags: [Blagues]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/blagueAAjouter'
+ *     responses:
+ *       200:
+ *         description: La blague à été créée.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/blagueAAjouter'
+ *       500:
+ *         description: Erreur serveur.
+ */
 //Insère une blague dans la BDD, id automatique
 app.post('/ajouter', (req, res) => {
   Blague.ajouteBlague(req.body.question, req.body.reponse);
   res.send(req.body);
 });
 
+/**
+ * @swagger
+ * tags:
+ *   name: Blagues
+ *   description: API qui gère les blagues
+ * /blagues:
+ *   get:
+ *     summary: Affiche toutes les blagues
+ *     tags: [Blagues]
+ *     responses:
+ *       200:
+ *         description: La liste des blagues au format Json.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/blague'
+ *       500:
+ *         description: Erreur serveur.
+ */
 //Envoi toutes les blagues
 app.get('/blagues', async (req, res) => {
   //var resultat = new Array;
@@ -59,11 +103,56 @@ app.get('/blagues', async (req, res) => {
   res.send(await Blague.toutesLesBlagues());
 });
 
+/**
+ * @swagger
+ * tags:
+ *   name: Blagues
+ *   description: API qui gère les blagues
+ * /blagues/random:
+ *   get:
+ *     summary: Affiche une blague au hasard.
+ *     tags: [Blagues]
+ *     responses:
+ *       200:
+ *         description: La blague au format Json.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/blague'
+ *       500:
+ *         description: Erreur serveur.
+ */
 //Envoi une blague aléatoire
 app.get('/blagues/random', async (req, res) => {
 	res.send(await Blague.blagueAleatoire());
 });
 
+/**
+ * @swagger
+ * tags:
+ *   name: Blagues
+ *   description: API qui gère les blagues
+ * /blagues/{id}:
+ *   get:
+ *     summary: Affiche une blague dont l'id correspond à celui passé en paramètre.
+ *     tags: [Blagues]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: L'id de la blague.
+ *     responses:
+ *       200:
+ *         description: La blague au format Json.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/blague'
+ *       404:
+ *         description: La blague n'a pas été trouvée.
+ */
 //Envoi une blague correspondant à son id
 app.get('/blagues/:id', async (req, res) => {
 	res.send(await Blague.blagueParId(req.params.id));
